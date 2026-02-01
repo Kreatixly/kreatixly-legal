@@ -128,8 +128,9 @@
         }
 
         /* Featured App Section (Outli) */
+       /* Featured App Section (Outli) */
         .featured-product {
-            background: var(--color-card-bg);
+            background: var(--color-card-bg, #1a1c20); /* fallback falls var(--color-card-bg) fehlt */
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 32px;
             padding: 50px;
@@ -139,78 +140,76 @@
             margin-bottom: 100px;
             position: relative;
             overflow: hidden;
+            flex-wrap: wrap; /* Wichtige Änderung: Zeilenumbruch bei kleinen Bildschirmen */
+            justify-content: center; /* Zentriert Inhalte bei Wrap */
         }
-
-        .featured-product::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(157, 50, 255, 0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .app-icon {
+        
+        .featured-product .app-icon {
             width: 140px;
             height: 140px;
             flex-shrink: 0;
             border-radius: 30px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             filter: drop-shadow(0 0 15px rgba(50, 215, 255, 0.2));
+            margin-bottom: 20px; /* Abstand unter Icon bei kleinerem Bildschirm */
         }
-
-        .app-info h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .badge {
-            font-size: 0.75rem;
-            padding: 4px 12px;
-            background: var(--color-primary-cyan);
-            color: var(--color-bg-dark);
-            border-radius: 100px;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .app-info p {
-            color: #9ca3af;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 28px;
-            background: linear-gradient(135deg, var(--color-primary-cyan), var(--color-primary-purple));
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: transform 0.2s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-        }
-        /* Featured App Section (Outli) */
         
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        .featured-product .app-info {
+            max-width: 400px; /* verhindert, dass Text zu breit wird */
         }
-
+        
+        @media (max-width: 768px) {
+            .featured-product {
+                padding: 30px 20px;
+                gap: 20px;
+            }
+        
+            .app-info h2 {
+                font-size: 1.5rem;
+            }
+        
+            .app-info p {
+                font-size: 1rem;
+            }
+        
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+        
         @media (max-width: 480px) {
             h1 { font-size: 2rem; }
-            .featured-product { flex-direction: column; text-align: center; padding: 30px; }
             .logo-wrapper { width: 180px; }
+            .featured-product {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+        
+            .app-icon {
+                width: 120px;
+                height: 120px;
+            }
+        
+            .app-info {
+                max-width: 100%;
+            }
+        
+            .app-info h2 {
+                font-size: 1.3rem;
+            }
+        
+            .app-info p {
+                font-size: 0.95rem;
+            }
+        
+            .cta-button {
+                width: 100%;
+                padding: 12px 0;
+            }
         }
+
     </style>
 </head>
 <body>
