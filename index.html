@@ -12,6 +12,7 @@
             --color-accent-orange: #ff8a32;
             --color-text-light: #f9fafb;
             --color-bg-dark: #1a1c20;
+            --color-card-bg: #1a1c20;
         }
 
         * {
@@ -27,21 +28,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             text-align: center;
             padding: 20px;
-            overflow: hidden;
+            position: relative;
         }
 
         .container {
             max-width: 600px;
+            width: 100%;
             z-index: 1;
         }
 
         .logo-wrapper {
             width: 220px;
-            height: auto;
             margin: 0 auto 30px;
             filter: drop-shadow(0 0 25px rgba(157, 50, 255, 0.4));
             animation: fadeInScale 1s ease-out;
@@ -51,7 +51,7 @@
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 50%; /* Optional, falls dein Bild kreisförmig wirken soll */
+            border-radius: 50%;
         }
 
         h1 {
@@ -86,11 +86,13 @@
             margin-right: auto;
         }
 
+        /* Navigation Links */
         .nav-links {
             display: flex;
             gap: 20px;
             justify-content: center;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -109,10 +111,9 @@
         }
 
         .footer-note {
-            position: absolute;
-            bottom: 30px;
             font-size: 0.8rem;
             color: #4b5563;
+            margin-top: 40px;
         }
 
         .bg-glow {
@@ -127,10 +128,9 @@
             pointer-events: none;
         }
 
-        /* Featured App Section (Outli) */
-       /* Featured App Section (Outli) */
+        /* Featured Product */
         .featured-product {
-            background: var(--color-card-bg, #1a1c20); /* fallback falls var(--color-card-bg) fehlt */
+            background: var(--color-card-bg);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 32px;
             padding: 50px;
@@ -140,76 +140,138 @@
             margin-bottom: 100px;
             position: relative;
             overflow: hidden;
-            flex-wrap: wrap; /* Wichtige Änderung: Zeilenumbruch bei kleinen Bildschirmen */
-            justify-content: center; /* Zentriert Inhalte bei Wrap */
+            flex-wrap: wrap;
+            justify-content: center;
         }
-        
-        .featured-product .app-icon {
+
+        .featured-product::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(157, 50, 255, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .app-icon {
             width: 140px;
             height: 140px;
             flex-shrink: 0;
             border-radius: 30px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             filter: drop-shadow(0 0 15px rgba(50, 215, 255, 0.2));
-            margin-bottom: 20px; /* Abstand unter Icon bei kleinerem Bildschirm */
+            margin-bottom: 20px;
         }
-        
-        .featured-product .app-info {
-            max-width: 400px; /* verhindert, dass Text zu breit wird */
+
+        .app-info {
+            max-width: 400px;
         }
-        
+
+        .app-info h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .app-info p {
+            color: #9ca3af;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .badge-inner {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            background: var(--color-primary-cyan);
+            color: var(--color-bg-dark);
+            border-radius: 100px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--color-primary-cyan), var(--color-primary-purple));
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Responsive Styles */
         @media (max-width: 768px) {
             .featured-product {
                 padding: 30px 20px;
                 gap: 20px;
             }
-        
+
             .app-info h2 {
                 font-size: 1.5rem;
             }
-        
+
             .app-info p {
                 font-size: 1rem;
             }
-        
+
             .cta-button {
                 padding: 10px 20px;
-                font-size: 0.9rem;
             }
         }
-        
+
         @media (max-width: 480px) {
             h1 { font-size: 2rem; }
             .logo-wrapper { width: 180px; }
+
             .featured-product {
                 flex-direction: column;
                 text-align: center;
                 padding: 20px;
             }
-        
+
             .app-icon {
                 width: 120px;
                 height: 120px;
             }
-        
+
             .app-info {
                 max-width: 100%;
             }
-        
+
             .app-info h2 {
                 font-size: 1.3rem;
             }
-        
+
             .app-info p {
                 font-size: 0.95rem;
             }
-        
+
             .cta-button {
                 width: 100%;
                 padding: 12px 0;
             }
-        }
 
+            .nav-links {
+                flex-direction: column;
+                gap: 12px;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -218,33 +280,34 @@
 
     <div class="container">
         <div class="logo-wrapper">
-            <!-- PNG LOGO PLATZHALTER -->
             <img src="logo.png" alt="Kreatixly Logo">
         </div>
 
         <div class="badge">In Arbeit</div>
         <h1>Kreatixly</h1>
         <p>Wir erschaffen die Schnittstelle zwischen Technologie und Kunst. Unsere neue Plattform befindet sich derzeit im Aufbau.</p>
+
         <section class="featured-product">
             <img src="./logo.png" alt="Outli App Icon" class="app-icon">
             <div class="app-info">
                 <div style="margin-bottom: 8px;">
-                    <span class="badge">Neuerscheinung</span>
+                    <span class="badge-inner">Neuerscheinung</span>
                 </div>
                 <h2>Outli <span style="font-weight: 300; color: #6b7280;">AR Drawing</span></h2>
                 <p>Unser Flaggschiff-Produkt für Künstler und Einsteiger. Outli nutzt präzise AR-Technologie, um das Zeichnen und Skizzieren auf Papier so einfach wie nie zuvor zu machen.</p>
                 <a href="#" class="cta-button">Bald im Play Store</a>
             </div>
         </section>
+
         <nav class="nav-links">
             <a href="impressum.html">Impressum</a>
             <a href="datenschutz.html">Datenschutz</a>
             <a href="mailto:support@kreatixly.com">Kontakt</a>
         </nav>
-    </div>
 
-    <div class="footer-note">
-        &copy; 2026 Kreatixly. Alle Rechte vorbehalten.
+        <div class="footer-note">
+            &copy; 2026 Kreatixly. Alle Rechte vorbehalten.
+        </div>
     </div>
 
 </body>
