@@ -136,13 +136,13 @@
             border-radius: 32px;
             padding: 50px;
             display: flex;
+            flex-direction: column; /* Vertikal stapeln für bessere Zentrierung */
             align-items: center;
-            gap: 40px;
-            margin-bottom: 100px;
+            gap: 25px;
+            margin: 20px auto 60px;
             position: relative;
             overflow: hidden;
-            flex-wrap: wrap;
-            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
 
         .featured-product::before {
@@ -175,8 +175,10 @@
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            justify-content: center; /* Dies zentriert den Inhalt im Flex-Container */
+            gap: 12px;
             flex-wrap: wrap;
+            text-align: center;
         }
 
         .app-info p {
