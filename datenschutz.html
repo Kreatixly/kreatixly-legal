@@ -25,85 +25,185 @@
         p, li { color: #9ca3af; margin-bottom: 10px; }
         a { color: var(--color-primary-cyan); text-decoration: none; }
         .back-link { margin-top: 40px; display: block; font-weight: bold; }
+
+       .lang-toggle {
+          position: sticky;
+          top: 0;
+          z-index: 10;
+          background: white;
+          border-bottom: 1px solid var(--border);
+          padding: 12px 24px;
+          display: flex;
+          gap: 12px;
+          align-items: center;
+        }
+        .lang-toggle span { font-family: sans-serif; font-size: 13px; color: var(--muted); }
+        .lang-btn {
+          font-family: sans-serif;
+          font-size: 13px;
+          font-weight: 600;
+          padding: 4px 14px;
+          border-radius: 20px;
+          border: 1.5px solid var(--border);
+          background: white;
+          cursor: pointer;
+          color: var(--muted);
+          transition: all 0.15s;
+        }
+        .lang-btn.active {
+          background: var(--indigo);
+          border-color: var(--indigo);
+          color: white;
+        }
     </style>
 </head>
 <body>
 
-<h1>Datenschutzerklärung</h1>
+<div class="lang-toggle">
+  <span>Sprache / Language:</span>
+  <button class="lang-btn active" onclick="showLang('de', event)">🇩🇪 Deutsch</button>
+  <button class="lang-btn" onclick="showLang('en', event)">🇬🇧 English</button>
+</div>
 
-<h2>1. Einleitung</h2>
-<p>Der Schutz Ihrer persönlichen Daten ist uns ein wichtiges Anliegen. In dieser Datenschutzerklärung informieren wir Sie transparent darüber, welche Daten wir auf unserer Website <strong>kreatixly.com</strong> sowie innerhalb unserer mobilen Applikation <strong>Outli</strong> erheben, zu welchen Zwecken und auf welcher Rechtsgrundlage dies geschieht.</p>
+<!-- ======== DEUTSCH ======== -->
+<div id="de" class="section visible">
+  <div class="container">
+    <h1>Datenschutzerklärung</h1>
+    <p class="subtitle">Outli &nbsp;·&nbsp; Kreatixly &nbsp;·&nbsp; Stand: Februar 2026</p>
 
-<h2>2. Verantwortlicher</h2>
-<p><strong>Max Mustermann</strong><br>
-Musterstraße 1<br>
-12345 Musterstadt<br>
-E-Mail: <a href="mailto:support@kreatixly.com">support@kreatixly.com</a></p>
-<p>Verantwortlich im Sinne der Datenschutzgesetze ist die oben genannte Person. Für Fragen zum Datenschutz können Sie sich jederzeit an uns wenden.</p>
+    <h2>1. Verantwortlicher</h2>
+    <p>
+      Manu [Nachname]<br />
+      Kreatixly (Kleingewerbe)<br />
+      [Straße, PLZ, Ort], Baden-Württemberg, Deutschland<br />
+      E-Mail: <a href="mailto:kontakt@kreatixly.com">kontakt@kreatixly.com</a>
+    </p>
 
-<h2>3. Nutzung der mobilen App "Outli"</h2>
+    <h2>2. Mobile App „Outli"</h2>
 
-<h3>a) Kamera- und Bildzugriff</h3>
-<p>Die App <strong>Outli</strong> benötigt Zugriff auf die Kamera Ihres Geräts, um die Kernfunktion <strong>AR-Tracing</strong> bereitzustellen.</p>
-<p><strong>Wichtig:</strong> Die Bildverarbeitung erfolgt ausschließlich lokal auf Ihrem Gerät. Es werden keine Bilder, Videos oder persönliche Fotos an unsere Server oder an Dritte übertragen.</p>
-<p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Sie können die Berechtigung jederzeit über die Systemeinstellungen Ihres Geräts entziehen.</p>
+    <p><strong>Kamera und Bilder</strong><br />
+    Outli verarbeitet Bilder ausschließlich lokal auf Ihrem Gerät. Fotos und Bilder verlassen Ihr Gerät nie. Benutzereinstellungen und Fortschrittsdaten werden lokal gespeichert, nicht übermittelt und beim Deinstallieren gelöscht. Wir erheben keine Namen, E-Mail-Adressen oder sonstige direkt identifizierende Daten.<br />
+    Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung über Systemberechtigung).</p>
 
-<h3>b) Google Firebase (Analytics & Crashlytics)</h3>
-<p>Wir verwenden in der App Dienste von <strong>Google Firebase</strong>, bereitgestellt von <strong>Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland</strong>, um die App-Stabilität zu verbessern und Nutzungsstatistiken zu erheben.</p>
+    <p><strong>Google Firebase (Analytics, Crashlytics, Remote Config)</strong><br />
+    Anbieter: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Firebase Analytics erfasst anonymisierte Nutzungsereignisse zur App-Verbesserung. Crashlytics übermittelt bei Abstürzen technische Berichte (Gerättyp, OS-Version, keine persönlichen Inhalte). Remote Config lädt Konfigurationsparameter von Google-Servern. Daten können in die USA übertragen werden; Google verwendet Standardvertragsklauseln (SCCs) und ist nach dem EU-US Data Privacy Framework zertifiziert. Aufbewahrungsdauer: bis zu 14 Monate (Analytics), 90 Tage (Crashlytics).<br />
+    Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an Stabilität und Verbesserung der App).<br />
+    Mehr Informationen: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
 
-<p><strong>Firebase Crashlytics (Absturzberichte):</strong> Bei App-Abstürzen werden technische Informationen wie Geräte-Modell, Betriebssystemversion, App-Version und Absturzzeitpunkt an Google übermittelt. Diese Daten werden ausschließlich zur Verbesserung der Stabilität der App verwendet und nicht mit anderen Daten zusammengeführt.</p>
+    <p><strong>Google AdMob</strong><br />
+    Anbieter: Google Ireland Limited. Im kostenlosen Tarif werden Werbeanzeigen über AdMob ausgeliefert. AdMob kann die Android Advertising ID (AAID) zur Ausspielung personalisierter Werbung verwenden. Personalisierte Werbung kann deaktiviert werden: in den Android-Einstellungen unter <em>Datenschutz → Werbung</em> oder über <a href="https://adssettings.google.com/" target="_blank">adssettings.google.com</a>.<br />
+    Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).<br />
+    Mehr Informationen: <a href="https://policies.google.com/technologies/ads" target="_blank">policies.google.com/technologies/ads</a></p>
 
-<p><strong>Firebase Analytics (Nutzungsstatistiken):</strong> Anonyme technische Informationen über Nutzungsmuster (z. B. Verwendung bestimmter Funktionen) werden an Google übermittelt, um die App fortlaufend zu optimieren.</p>
+    <p><strong>RevenueCat</strong><br />
+    Anbieter: RevenueCat, Inc., USA. In-App-Käufe und Abonnements werden über RevenueCat abgewickelt. RevenueCat verarbeitet pseudonymisierte Kauf- und Abonnementdaten; Zahlungsdaten verbleiben beim Google Play Store. RevenueCat ist nach dem EU-US Data Privacy Framework zertifiziert.<br />
+    Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung).<br />
+    Mehr Informationen: <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></p>
 
-<p><strong>Rechtsgrundlage:</strong> Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Ohne Einwilligung werden keine Daten an Google übermittelt.</p>
+    <h2>3. Website (kreatixly.com)</h2>
 
-<p><strong>Drittlandübermittlung:</strong> Die Daten können auch in Drittländern außerhalb der EU/des EWR verarbeitet werden. Google verwendet geeignete Garantien wie Standardvertragsklauseln, um ein angemessenes Datenschutzniveau sicherzustellen.</p>
+    <p>Diese Website wird über <strong>GitHub Pages</strong> (GitHub, Inc., USA) gehostet. Die Domain ist über <strong>Cloudflare</strong> (Cloudflare, Inc., USA) eingebunden. Beim Aufruf der Website können technische Daten wie IP-Adresse, Zugriffszeit und Server-Log-Dateien von diesen Anbietern verarbeitet werden. Zweck: Bereitstellung, Sicherheit und Performance der Website.<br />
+    Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).<br />
+    Beide Anbieter verwenden Standardvertragsklauseln für Drittlandübertragungen.<br />
+    Mehr Informationen: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">GitHub Datenschutz</a> &nbsp;·&nbsp; <a href="https://www.cloudflare.com/privacypolicy/" target="_blank">Cloudflare Datenschutz</a></p>
 
-<p><strong>Speicherdauer:</strong> Firebase speichert technische Informationen maximal 90 Tage (Crashlytics) bzw. laut den Firebase-Richtlinien für Analytics-Daten.</p>
+    <p>Diese Website verwendet keine Cookies, kein Tracking und keine eingebetteten Drittanbieter-Inhalte.</p>
 
-<p><strong>Widerruf und Opt-out:</strong> Sie können Ihre Einwilligung jederzeit über die App-Einstellungen oder in den Systemeinstellungen Ihres Geräts widerrufen. Nach Widerruf erfolgt keine weitere Datenübermittlung.</p>
+    <h2>4. Berechtigungen der App</h2>
+    <p>Die App benötigt Zugriff auf die Kamera (AR-Zeichenhilfe), den Gerätespeicher (Bilder auswählen und speichern) sowie eine Internetverbindung (Firebase, AdMob, RevenueCat).</p>
 
-<p>Weitere Informationen finden Sie bei Google: <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">https://firebase.google.com/support/privacy</a></p>
+    <h2>5. Ihre Rechte</h2>
+    <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Einwilligungen können Sie jederzeit widerrufen – für AdMob direkt über die Android-Einstellungen oder <a href="https://adssettings.google.com/" target="_blank">adssettings.google.com</a>. Lokale App-Daten werden durch Deinstallation gelöscht.</p>
+    <p>Anfragen richten Sie an: <a href="mailto:kontakt@kreatixly.com">kontakt@kreatixly.com</a></p>
+    <p>Beschwerden können Sie bei der zuständigen Aufsichtsbehörde einreichen. In Baden-Württemberg: <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank">www.baden-wuerttemberg.datenschutz.de</a></p>
 
-<h3>c) Werbung (Google AdMob)</h3>
-<p>In „Outli“ wird Werbung über <strong>Google AdMob</strong> eingeblendet. Google nutzt dafür Werbe-IDs Ihres Geräts, um personalisierte Anzeigen auszuliefern.</p>
-<p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung).</p>
-<p><strong>Opt-out:</strong> Sie können personalisierte Werbung in den Android-Systemeinstellungen unter <em>Datenschutz > Anzeigen</em> deaktivieren oder über die <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer">Google Ads-Einstellungen</a> steuern.</p>
-<p><strong>Drittlandübermittlung:</strong> Auch hier kann Google Daten in Drittländern (z. B. USA) verarbeiten, Standardvertragsklauseln sorgen für ein angemessenes Datenschutzniveau.</p>
+    <h2>6. Kinder</h2>
+    <p>Wir erheben wissentlich keine personenbezogenen Daten von Kindern unter 13 Jahren. Bei entsprechenden Hinweisen durch Erziehungsberechtigte nehmen wir die Daten umgehend aus der Verarbeitung.</p>
 
-<h2>4. Nutzung der Webseite (kreatixly.com)</h2>
-<p>Unsere Website wird auf <strong>GitHub Pages</strong> gehostet. Die Domain wurde über <strong>Cloudflare</strong> registriert. Beide Anbieter können beim Aufruf unserer Website technische Daten verarbeiten, wie:</p>
-<ul>
-  <li>IP-Adresse</li>
-  <li>Uhrzeit des Zugriffs</li>
-  <li>Server-Log-Files</li>
-</ul>
-<p><strong>Zweck:</strong> Bereitstellung der Website, Sicherheit, Performance (CDN, DDoS-Schutz, Stabilität)</p>
-<p><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</p>
-<p><strong>Drittlandübermittlung:</strong> Cloudflare und GitHub können Daten in Drittländer (z. B. USA) übertragen. Standardvertragsklauseln sorgen für ein angemessenes Datenschutzniveau.</p>
-<p>Weitere Informationen: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare Datenschutzerklärung</a>, <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Datenschutzerklärung</a></p>
+    <h2>7. Änderungen</h2>
+    <p>Änderungen dieser Datenschutzerklärung werden auf dieser Seite veröffentlicht. Das Datum der letzten Aktualisierung ist oben angegeben.</p>
 
-<h3>Cookies / Tracking</h3>
-<p>Unsere Website verwendet keine Cookies, kein Tracking und keine eingebetteten Inhalte von Drittanbietern, sofern nicht ausdrücklich angegeben.</p>
+    <div class="footer-note">
+      Diese Datenschutzerklärung ersetzt keine individuelle Rechtsberatung.
+    </div>
+  </div>
+</div>
 
-<h2>5. Ihre Rechte</h2>
-<p>Sie haben folgende Rechte in Bezug auf Ihre personenbezogenen Daten:</p>
-<ul>
-  <li>Auskunft über die gespeicherten Daten</li>
-  <li>Berichtigung unrichtiger Daten</li>
-  <li>Löschung von Daten, soweit keine gesetzliche Aufbewahrungspflicht besteht</li>
-  <li>Einschränkung der Verarbeitung</li>
-  <li>Datenübertragbarkeit</li>
-  <li>Widerspruch gegen Verarbeitung aufgrund berechtigter Interessen oder Werbung</li>
-</ul>
-<p>Sie haben das Recht, sich bei einer Aufsichtsbehörde zu beschweren: <a href="https://www.bfdi.bund.de/DE/Infothek/Anschriften/anschriften-node.html" target="_blank" rel="noopener noreferrer">Landesbeauftragte/r für Datenschutz Ihres Bundeslandes</a></p>
+<!-- ======== ENGLISH ======== -->
+<div id="en" class="section">
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p class="subtitle">Outli &nbsp;·&nbsp; Kreatixly &nbsp;·&nbsp; Last updated: February 2026</p>
 
-<h2>6. Änderungen der Datenschutzerklärung</h2>
-<p>Wir behalten uns vor, diese Datenschutzerklärung bei Änderungen der App-Funktionen oder rechtlicher Vorgaben anzupassen. Die aktuelle Version ist stets auf <a href="/datenschutz">kreatixly.com/datenschutz</a> verfügbar.</p>
+    <h2>1. Controller</h2>
+    <p>
+      Manu [Surname]<br />
+      Kreatixly (Sole proprietorship)<br />
+      [Street, ZIP, City], Baden-Württemberg, Germany<br />
+      Email: <a href="mailto:kontakt@kreatixly.com">kontakt@kreatixly.com</a>
+    </p>
 
-<a href="index.html" class="back-link">← Zurück zur Startseite</a>
-    
-<p><strong>Stand:</strong> Februar 2026</p>
+    <h2>2. Mobile App "Outli"</h2>
+
+    <p><strong>Camera and Images</strong><br />
+    Outli processes images exclusively on your device. Photos and images never leave your device. User preferences and progress data are stored locally, never transmitted, and deleted when you uninstall the app. We do not collect names, email addresses, or other directly identifying information.<br />
+    Legal basis: Art. 6(1)(a) GDPR (consent via system permission).</p>
+
+    <p><strong>Google Firebase (Analytics, Crashlytics, Remote Config)</strong><br />
+    Provider: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland. Firebase Analytics collects anonymized usage events to improve the app. Crashlytics sends technical crash reports (device type, OS version, no personal content) when errors occur. Remote Config downloads configuration parameters from Google servers. Data may be transferred to the United States; Google uses Standard Contractual Clauses (SCCs) and is certified under the EU-US Data Privacy Framework. Retention: up to 14 months (Analytics), 90 days (Crashlytics).<br />
+    Legal basis: Art. 6(1)(f) GDPR (legitimate interest in app stability and improvement).<br />
+    More information: <a href="https://firebase.google.com/support/privacy" target="_blank">firebase.google.com/support/privacy</a></p>
+
+    <p><strong>Google AdMob</strong><br />
+    Provider: Google Ireland Limited. The free tier displays ads via AdMob. AdMob may use the Android Advertising ID (AAID) to serve personalized ads. You can disable personalized ads in Android settings under <em>Privacy → Ads</em> or via <a href="https://adssettings.google.com/" target="_blank">adssettings.google.com</a>.<br />
+    Legal basis: Art. 6(1)(a) GDPR (consent).<br />
+    More information: <a href="https://policies.google.com/technologies/ads" target="_blank">policies.google.com/technologies/ads</a></p>
+
+    <p><strong>RevenueCat</strong><br />
+    Provider: RevenueCat, Inc., USA. In-app purchases and subscriptions are managed by RevenueCat. RevenueCat processes pseudonymized purchase and subscription data; payment data remains with the Google Play Store. RevenueCat is certified under the EU-US Data Privacy Framework.<br />
+    Legal basis: Art. 6(1)(b) GDPR (performance of contract).<br />
+    More information: <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a></p>
+
+    <h2>3. Website (kreatixly.com)</h2>
+
+    <p>This website is hosted via <strong>GitHub Pages</strong> (GitHub, Inc., USA). The domain is served through <strong>Cloudflare</strong> (Cloudflare, Inc., USA). When accessing the website, technical data such as IP address, access time, and server log files may be processed by these providers for the purpose of hosting, security, and performance.<br />
+    Legal basis: Art. 6(1)(f) GDPR (legitimate interest).<br />
+    Both providers use Standard Contractual Clauses for international data transfers.<br />
+    More information: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" target="_blank">GitHub Privacy Statement</a> &nbsp;·&nbsp; <a href="https://www.cloudflare.com/privacypolicy/" target="_blank">Cloudflare Privacy Policy</a></p>
+
+    <p>This website uses no cookies, no tracking, and no embedded third-party content.</p>
+
+    <h2>4. App Permissions</h2>
+    <p>The app requires access to the camera (AR drawing assistance), device storage (selecting and saving images), and an internet connection (Firebase, AdMob, RevenueCat).</p>
+
+    <h2>5. Your Rights</h2>
+    <p>You have the right to access, rectification, erasure, restriction of processing, data portability, and objection. Consent can be withdrawn at any time – for AdMob directly in Android settings or via <a href="https://adssettings.google.com/" target="_blank">adssettings.google.com</a>. Local app data is deleted by uninstalling the app.</p>
+    <p>For requests, contact: <a href="mailto:kontakt@kreatixly.com">kontakt@kreatixly.com</a></p>
+    <p>You have the right to lodge a complaint with your local data protection authority. In Baden-Württemberg: <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank">www.baden-wuerttemberg.datenschutz.de</a></p>
+
+    <h2>6. California Privacy Rights (CCPA/CPRA)</h2>
+    <p>California residents have the right to know what personal information is collected, to request deletion, and to opt out of the sale of personal information. We do not sell personal information. For requests: <a href="mailto:kontakt@kreatixly.com">kontakt@kreatixly.com</a></p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>We do not knowingly collect personal information from children under 13. If you are a parent or guardian with concerns, please contact us and we will promptly address the matter.</p>
+
+    <h2>8. Changes</h2>
+    <p>Any changes to this Privacy Policy will be published on this page. The date of the last update is shown above.</p>
+
+    <div class="footer-note">
+      This Privacy Policy does not constitute legal advice.
+    </div>
+  </div>
+</div>
+
+<script>
+  function showLang(lang, event) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(lang).classList.add('visible');
+    event.target.classList.add('active');
+  }
+</script>
 
 </body>
 </html>
