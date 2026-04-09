@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <title>Datenschutzerklärung – Outli | Kreatixly</title>
+    <style>
+        :root {
+            --color-primary-cyan: #32d7ff;
+            --color-text-light: #f9fafb;
+            --color-bg-dark: #1a1c20;
+            --color-muted: #9ca3af;
+            --color-border: #2d2f34;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--color-bg-dark);
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .lang-toggle {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: var(--color-bg-dark);
+            border-bottom: 1px solid var(--color-border);
+            padding: 12px 24px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .lang-toggle span {
+            font-size: 13px;
+            color: var(--color-muted);
+        }
+
+        .lang-btn {
+            font-size: 13px;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 20px;
+            border: 1.5px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text-light);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .lang-btn.active {
+            background: var(--color-primary-cyan);
+            border-color: var(--color-primary-cyan);
+            color: #1a1c20;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            color: var(--color-primary-cyan);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--color-muted);
+            margin-bottom: 36px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        h2 {
+            color: var(--color-primary-cyan);
+            margin-top: 36px;
+            font-size: 1.15rem;
+            border-left: 4px solid var(--color-primary-cyan);
+            padding-left: 10px;
+        }
+
+        h3 {
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        p, li {
+            color: var(--color-muted);
+            margin-bottom: 10px;
+        }
+
+        ul { padding-left: 20px; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            font-size: 0.9rem;
+        }
+
+        th {
+            text-align: left;
+            color: var(--color-primary-cyan);
+            border-bottom: 1px solid var(--color-border);
+            padding: 8px 10px;
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--color-muted);
+            border-bottom: 1px solid var(--color-border);
+            padding: 8px 10px;
+            vertical-align: top;
+        }
+
+        a {
+            color: var(--color-primary-cyan);
+            text-decoration: none;
+        }
+
+        a:hover { text-decoration: underline; }
+
+        .back-link {
+            margin-top: 48px;
+            display: block;
+            font-weight: bold;
+            color: var(--color-primary-cyan);
+        }
+
+        .notice-box {
+            background: rgba(50, 215, 255, 0.07);
+            border: 1px solid rgba(50, 215, 255, 0.25);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 20px 0;
+        }
+
+        .notice-box p { margin: 0; }
+
+        .section { display: none; }
+        .section.visible { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="lang-toggle">
+    <span>Sprache / Language:</span>
+    <button class="lang-btn active" onclick="showLang('de', this)">🇩🇪 Deutsch</button>
+    <button class="lang-btn" onclick="showLang('en', this)">🇬🇧 English</button>
+</div>
+
+<!-- ===================== DEUTSCH ===================== -->
+<div id="de" class="section visible">
+    <div class="container">
+        <h1>Datenschutzerklärung</h1>
+        <p class="subtitle">Outli AR Drawing – Version 1.0 &nbsp;|&nbsp; Stand: April 2025</p>
+
+        <h2>1. Verantwortlicher</h2>
+        <p>
+            Manuel Huber<br>
+            Kreatixly (Kleingewerbe)<br>
+            Südl. Alleenstr. 6, 71679 Asperg, Baden-Württemberg<br>
+            E-Mail: <a href="mailto:support@kreatixly.com">support@kreatixly.com</a>
+        </p>
+        <p>Ein Datenschutzbeauftragter ist aufgrund der Unternehmensgröße nicht gesetzlich vorgeschrieben.</p>
+
+        <h2>2. Überblick</h2>
+        <div class="notice-box">
+            <p>Outli ist eine AR-Tracing-App. Kamerabilder werden ausschließlich lokal auf Ihrem Gerät verarbeitet und verlassen es nicht. Für Nutzungsanalysen und In-App-Käufe werden Drittanbieter eingesetzt, die jeweils eigene Datenschutzrichtlinien haben.</p>
+        </div>
+
+        <h2>3. Erhobene Daten und Verarbeitungszwecke</h2>
+
+        <h3>3.1 Kamera und Bilddaten</h3>
+        <p>
+            Outli greift auf die Kamera Ihres Geräts zu, um Vorlagen per Augmented Reality einzublenden. Kamerabilder werden ausschließlich im Arbeitsspeicher (RAM) des Geräts verarbeitet. Es werden keine Bilder gespeichert, übertragen oder an Dritte weitergegeben.
+        </p>
+        <ul>
+            <li><strong>Zweck:</strong> AR-Darstellung der Vorlage auf der Kamera</li>
+            <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO</li>
+            <li><strong>Speicherdauer:</strong> Keine – ausschließlich RAM-Verarbeitung</li>
+        </ul>
+
+        <h3>3.2 Nutzungsanalyse (Google Firebase Analytics)</h3>
+        <p>
+            Outli verwendet Google Firebase Analytics zur anonymisierten Analyse der App-Nutzung. Dabei werden keine personenbezogenen Daten wie Name oder E-Mail-Adresse erfasst. Firebase verarbeitet pseudonymisierte Gerätekennungen und aggregierte Nutzungsmuster.
+        </p>
+        <ul>
+            <li><strong>Zweck:</strong> Verbesserung der App-Funktionalität und Nutzerfreundlichkeit</li>
+            <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der App-Verbesserung)</li>
+            <li><strong>Speicherdauer:</strong> Bis zu 14 Monate (Google-Standard)</li>
+            <li><strong>Empfänger:</strong> Google LLC (Firebase), USA</li>
+        </ul>
+
+        <h3>3.3 Werbeanzeigen (Google AdMob)</h3>
+        <p>
+            Outli zeigt Werbeanzeigen über Google AdMob. AdMob kann personalisierte Werbung auf Basis von Interessen anzeigen. Personalisierte Werbung kann in den App-Einstellungen deaktiviert werden.
+        </p>
+        <ul>
+            <li><strong>Zweck:</strong> Finanzierung der kostenlosen App-Version</li>
+            <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)</li>
+            <li><strong>Empfänger:</strong> Google LLC (AdMob), USA</li>
+            <li><strong>Opt-out:</strong> Deaktivierung personalisierter Werbung in den App-Einstellungen möglich</li>
+        </ul>
+
+        <h3>3.4 In-App-Käufe (RevenueCat &amp; Google Play Billing)</h3>
+        <p>
+            Optionale In-App-Käufe werden über RevenueCat und Google Play Billing abgewickelt. RevenueCat verarbeitet pseudonymisierte Kaufdaten zur Verwaltung von Abonnements und Käufen. Zahlungsdaten selbst werden ausschließlich von Google verarbeitet.
+        </p>
+        <ul>
+            <li><strong>Zweck:</strong> Verwaltung und Verifizierung von In-App-Käufen</li>
+            <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO</li>
+            <li><strong>Empfänger:</strong> RevenueCat Inc. (USA), Google LLC (USA)</li>
+        </ul>
+
+        <h2>4. Drittanbieter und Datenübertragung in Drittländer</h2>
+        <table>
+            <tr>
+                <th>Anbieter</th>
+                <th>Zweck</th>
+                <th>Sitz</th>
+                <th>Schutzmaßnahmen</th>
+            </tr>
+            <tr>
+                <td>Google LLC (Firebase)</td>
+                <td>Nutzungsanalyse</td>
+                <td>USA</td>
+                <td>EU-US Data Privacy Framework, SCCs</td>
+            </tr>
+            <tr>
+                <td>Google LLC (AdMob)</td>
+                <td>Werbeanzeigen</td>
+                <td>USA</td>
+                <td>EU-US Data Privacy Framework, SCCs</td>
+            </tr>
+            <tr>
+                <td>Google LLC (Play Billing)</td>
+                <td>Kaufabwicklung</td>
+                <td>USA</td>
+                <td>EU-US Data Privacy Framework</td>
+            </tr>
+            <tr>
+                <td>RevenueCat Inc.</td>
+                <td>Kauf-Verwaltung</td>
+                <td>USA</td>
+                <td>Standardvertragsklauseln (SCCs)</td>
+            </tr>
+        </table>
+        <p>Die Datenübertragung in die USA erfolgt auf Grundlage der Standardvertragsklauseln gemäß Art. 46 Abs. 2 lit. c DSGVO sowie des EU-US Data Privacy Frameworks.</p>
+
+        <h2>5. App-Berechtigungen</h2>
+        <table>
+            <tr>
+                <th>Berechtigung</th>
+                <th>Zweck</th>
+            </tr>
+            <tr>
+                <td>Kamera</td>
+                <td>AR-Darstellung der Vorlage (Echtzeit, kein Speichern)</td>
+            </tr>
+            <tr>
+                <td>Gerätespeicher</td>
+                <td>Zugriff auf gespeicherte Vorlagen (nur wenn vom Nutzer ausgewählt)</td>
+            </tr>
+            <tr>
+                <td>Internetzugang</td>
+                <td>Werbeanzeigen, Analyse, Kaufverifizierung</td>
+            </tr>
+        </table>
+
+        <h2>6. Kinder und Jugendliche</h2>
+        <p>
+            Outli richtet sich an ein allgemeines Publikum ab 13 Jahren. Wir erheben wissentlich keine personenbezogenen Daten von Kindern unter 13 Jahren im Sinne des U.S. Children's Online Privacy Protection Act (COPPA). Falls Sie als Elternteil oder Erziehungsberechtigter glauben, dass Ihr Kind unter 13 Jahren die App genutzt hat, kontaktieren Sie uns bitte unter <a href="mailto:support@kreatixly.com">support@kreatixly.com</a>.
+        </p>
+
+        <h2>7. Ihre Rechte (DSGVO)</h2>
+        <ul>
+            <li><strong>Auskunft</strong> (Art. 15 DSGVO)</li>
+            <li><strong>Berichtigung</strong> (Art. 16 DSGVO)</li>
+            <li><strong>Löschung</strong> (Art. 17 DSGVO)</li>
+            <li><strong>Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO)</li>
+            <li><strong>Datenportabilität</strong> (Art. 20 DSGVO)</li>
+            <li><strong>Widerspruch</strong> (Art. 21 DSGVO) – insbesondere gegen Firebase-Analyse und personalisierte Werbung</li>
+            <li><strong>Widerruf einer Einwilligung</strong> jederzeit mit Wirkung für die Zukunft</li>
+        </ul>
+        <p>Kontakt: <a href="mailto:support@kreatixly.com">support@kreatixly.com</a></p>
+
+        <h2>8. Beschwerderecht</h2>
+        <p>
+            Sie haben das Recht, sich bei der zuständigen Datenschutzaufsichtsbehörde zu beschweren:<br>
+            <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank" rel="noopener">www.baden-wuerttemberg.datenschutz.de</a>
+        </p>
+
+        <h2>9. Änderungen dieser Datenschutzerklärung</h2>
+        <p>
+            Die aktuelle Version ist stets unter <a href="https://kreatixly.com/datenschutz/outli">kreatixly.com/datenschutz/outli</a> abrufbar. Wesentliche Änderungen werden in der App kommuniziert.
+        </p>
+
+        <a href="./index.html" class="back-link">← Zurück zur Datenschutz-Übersicht</a>
+    </div>
+</div>
+
+<!-- ===================== ENGLISH ===================== -->
+<div id="en" class="section">
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p class="subtitle">Outli AR Drawing – Version 1.0 &nbsp;|&nbsp; Last updated: April 2025</p>
+
+        <h2>1. Controller</h2>
+        <p>
+            Manuel Huber<br>
+            Kreatixly (sole trader / Kleingewerbe)<br>
+            Südl. Alleenstr. 6, 71679 Asperg, Baden-Württemberg, Germany<br>
+            Email: <a href="mailto:support@kreatixly.com">support@kreatixly.com</a>
+        </p>
+        <p>A Data Protection Officer is not legally required given the size of this business.</p>
+
+        <h2>2. Overview</h2>
+        <div class="notice-box">
+            <p>Outli is an AR tracing app. Camera images are processed exclusively on your device and never leave it. Third-party services are used for usage analytics and in-app purchases, each with their own privacy policies.</p>
+        </div>
+
+        <h2>3. Data Collected and Purposes</h2>
+
+        <h3>3.1 Camera and Image Data</h3>
+        <p>
+            Outli accesses your device's camera to overlay templates via Augmented Reality. Camera images are processed exclusively in the device's RAM. No images are saved, transmitted, or shared with third parties.
+        </p>
+        <ul>
+            <li><strong>Purpose:</strong> AR overlay of the reference template</li>
+            <li><strong>Legal basis:</strong> Art. 6(1)(b) GDPR</li>
+            <li><strong>Retention:</strong> None – RAM processing only</li>
+        </ul>
+
+        <h3>3.2 Usage Analytics (Google Firebase Analytics)</h3>
+        <p>
+            Outli uses Google Firebase Analytics for anonymized analysis of app usage. No personal data such as name or email address is collected. Firebase processes pseudonymized device identifiers and aggregated usage patterns.
+        </p>
+        <ul>
+            <li><strong>Purpose:</strong> Improving app functionality and usability</li>
+            <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in app improvement)</li>
+            <li><strong>Retention:</strong> Up to 14 months (Google default)</li>
+            <li><strong>Recipients:</strong> Google LLC (Firebase), USA</li>
+        </ul>
+
+        <h3>3.3 Advertising (Google AdMob)</h3>
+        <p>
+            Outli displays ads via Google AdMob. AdMob may show personalized ads based on interests. Personalized ads can be disabled in the app settings.
+        </p>
+        <ul>
+            <li><strong>Purpose:</strong> Funding the free version of the app</li>
+            <li><strong>Legal basis:</strong> Art. 6(1)(a) GDPR (consent) or Art. 6(1)(f) GDPR (legitimate interest)</li>
+            <li><strong>Recipients:</strong> Google LLC (AdMob), USA</li>
+            <li><strong>Opt-out:</strong> Personalized ads can be disabled in the app settings</li>
+        </ul>
+
+        <h3>3.4 In-App Purchases (RevenueCat &amp; Google Play Billing)</h3>
+        <p>
+            Optional in-app purchases are processed via RevenueCat and Google Play Billing. RevenueCat handles pseudonymized purchase data to manage subscriptions and purchases. Payment data itself is processed exclusively by Google.
+        </p>
+        <ul>
+            <li><strong>Purpose:</strong> Managing and verifying in-app purchases</li>
+            <li><strong>Legal basis:</strong> Art. 6(1)(b) GDPR</li>
+            <li><strong>Recipients:</strong> RevenueCat Inc. (USA), Google LLC (USA)</li>
+        </ul>
+
+        <h2>4. Third Parties and International Data Transfers</h2>
+        <table>
+            <tr>
+                <th>Provider</th>
+                <th>Purpose</th>
+                <th>Location</th>
+                <th>Safeguards</th>
+            </tr>
+            <tr>
+                <td>Google LLC (Firebase)</td>
+                <td>Usage analytics</td>
+                <td>USA</td>
+                <td>EU-US Data Privacy Framework, SCCs</td>
+            </tr>
+            <tr>
+                <td>Google LLC (AdMob)</td>
+                <td>Advertising</td>
+                <td>USA</td>
+                <td>EU-US Data Privacy Framework, SCCs</td>
+            </tr>
+            <tr>
+                <td>Google LLC (Play Billing)</td>
+                <td>Purchase processing</td>
+                <td>USA</td>
+                <td>EU-US Data Privacy Framework</td>
+            </tr>
+            <tr>
+                <td>RevenueCat Inc.</td>
+                <td>Purchase management</td>
+                <td>USA</td>
+                <td>Standard Contractual Clauses (SCCs)</td>
+            </tr>
+        </table>
+        <p>Data transfers to the USA are based on Standard Contractual Clauses pursuant to Art. 46(2)(c) GDPR and the EU-US Data Privacy Framework.</p>
+
+        <h2>5. App Permissions</h2>
+        <table>
+            <tr>
+                <th>Permission</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>Camera</td>
+                <td>AR overlay of the reference template (real-time, no saving)</td>
+            </tr>
+            <tr>
+                <td>Device storage</td>
+                <td>Access to saved templates (only when selected by the user)</td>
+            </tr>
+            <tr>
+                <td>Internet access</td>
+                <td>Ads, analytics, purchase verification</td>
+            </tr>
+        </table>
+
+        <h2>6. Children and Minors</h2>
+        <p>
+            Outli is intended for a general audience aged 13 and above. We do not knowingly collect personal information from children under the age of 13 as defined by the U.S. Children's Online Privacy Protection Act (COPPA). If you are a parent or guardian and believe your child under 13 has used the app, please contact us at <a href="mailto:support@kreatixly.com">support@kreatixly.com</a>.
+        </p>
+
+        <h2>7. Your Rights (GDPR)</h2>
+        <ul>
+            <li><strong>Right of access</strong> (Art. 15 GDPR)</li>
+            <li><strong>Right to rectification</strong> (Art. 16 GDPR)</li>
+            <li><strong>Right to erasure</strong> (Art. 17 GDPR)</li>
+            <li><strong>Right to restriction of processing</strong> (Art. 18 GDPR)</li>
+            <li><strong>Right to data portability</strong> (Art. 20 GDPR)</li>
+            <li><strong>Right to object</strong> (Art. 21 GDPR) – in particular against Firebase analytics and personalized advertising</li>
+            <li><strong>Right to withdraw consent</strong> at any time with future effect</li>
+        </ul>
+        <p>Contact: <a href="mailto:support@kreatixly.com">support4@kreatixly.com</a></p>
+
+        <h2>8. Right to Lodge a Complaint</h2>
+        <p>
+            You have the right to lodge a complaint with the competent supervisory authority:<br>
+            <a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank" rel="noopener">www.baden-wuerttemberg.datenschutz.de</a>
+        </p>
+        <p>Users outside the EU may contact their local data protection authority.</p>
+
+        <h2>9. Changes to This Privacy Policy</h2>
+        <p>
+            The current version is always available at <a href="https://kreatixly.com/datenschutz/outli">kreatixly.com/datenschutz/outli</a>. Material changes will be communicated within the app.
+        </p>
+
+        <a href="./index.html" class="back-link">← Back to Privacy Overview</a>
+    </div>
+</div>
+
+<script>
+    function showLang(lang, btn) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(lang).classList.add('visible');
+        btn.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
