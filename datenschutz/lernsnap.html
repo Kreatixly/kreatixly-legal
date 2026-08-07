@@ -176,7 +176,7 @@
 <div id="de" class="section visible">
     <div class="container">
         <h1>Datenschutzerklärung</h1>
-        <p class="subtitle">LernSnap – Version 1.0 &nbsp;|&nbsp; Stand: April 2025</p>
+        <p class="subtitle">LernSnap – Version 2.0 &nbsp;|&nbsp; Stand: August 2026 &nbsp;|&nbsp; <a href="#de-historie">Was sich geändert hat</a></p>
 
         <h2>1. Verantwortlicher</h2>
         <p>
@@ -189,7 +189,7 @@
 
         <h2>2. Überblick</h2>
         <div class="notice-box">
-            <p>LernSnap wurde mit dem Grundsatz <em>Datensparsamkeit</em> entwickelt. Es gibt kein Konto, keinen Login und keine Werbung. Alle Notizen, Lernpläne und Übungen werden ausschließlich lokal auf Ihrem Gerät gespeichert. Nur beim Fotografieren von Lernstoff werden Bilddaten zur KI-Verarbeitung übertragen.</p>
+            <p>LernSnap wurde mit dem Grundsatz <em>Datensparsamkeit</em> entwickelt. Es gibt kein Konto, keinen Login und keine Werbung. Alle Notizen, Lernpläne und Übungen werden ausschließlich lokal auf Ihrem Gerät gespeichert. Ihr Gerät verlassen nur: die Fotos Ihres Lernstoffs zur KI-Verarbeitung (3.1), eine zufällige Gerätekennung zum Schutz vor Missbrauch (3.2) sowie anonyme Nutzungsereignisse ohne Inhalte (3.5). Wer den KI-Coach nutzt, lädt einmalig eine Modelldatei herunter (3.6).</p>
         </div>
 
         <h2>3. Erhobene Daten und Verarbeitungszwecke</h2>
@@ -205,14 +205,17 @@
             <li><strong>Empfänger:</strong> Google LLC (Gemini API), Cloudflare Inc. (Proxy)</li>
         </ul>
 
-        <h3>3.2 Anonyme Gerätekennzeichnung (Rate Limiting)</h3>
+        <h3>3.2 Gerätekennung (Schutz vor Missbrauch)</h3>
         <p>
-            Um Missbrauch der KI-API zu verhindern, speichert der Cloudflare Worker eine anonyme, gerätespezifische Kennung (Device-ID) zusammen mit einem Anfragezähler. Diese Kennung enthält keine personenbezogenen Daten und wird automatisch nach 24 Stunden gelöscht.
+            Damit einzelne Geräte die KI-API nicht überlasten können, erzeugt die App bei der ersten Nutzung eine zufällige Kennung (eine UUID). Diese Kennung wird auf Ihrem Gerät gespeichert und bleibt dort bestehen, bis Sie die App deinstallieren oder ihre Daten löschen. Sie wird bei jeder Anfrage an unseren Cloudflare Worker mitgesendet und dort als Zähler-Schlüssel verwendet – für die KI-Anfragen (3.1) ebenso wie für die Nutzungsereignisse (3.5).
+        </p>
+        <p>
+            Die Kennung wird zufällig erzeugt. Sie enthält keinen Namen, keine E-Mail-Adresse, keine Werbe-ID und keine Gerätemerkmale und ist von sich aus keiner Person zuzuordnen. Auf dem Server wird sie ausschließlich als Bestandteil eines Tageszählers abgelegt, der nach 24 Stunden automatisch gelöscht wird; in unsere Auswertungsdaten fließt sie nicht ein (siehe 3.5).
         </p>
         <ul>
             <li><strong>Zweck:</strong> Schutz vor Missbrauch (Rate Limiting)</li>
             <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Sicherheit und Verfügbarkeit des Dienstes)</li>
-            <li><strong>Speicherdauer:</strong> 24 Stunden (automatische Löschung)</li>
+            <li><strong>Speicherdauer:</strong> auf dem Server 24 Stunden je Tageszähler (automatische Löschung); auf Ihrem Gerät bis zur Deinstallation oder zum Löschen der App-Daten</li>
             <li><strong>Empfänger:</strong> Cloudflare Inc. (USA)</li>
         </ul>
 
@@ -235,6 +238,54 @@
             <li><strong>Empfänger:</strong> Google LLC</li>
         </ul>
 
+        <h3>3.5 Anonyme Nutzungsereignisse</h3>
+        <p>
+            Um zu erkennen, welche Funktionen genutzt werden und wo die App klemmt, meldet LernSnap nach bestimmten Aktionen ein Ereignis an unseren Cloudflare Worker – etwa beim Start eines Scans, beim Abschluss einer Übung oder beim Erstellen eines Lernplans. Übertragen werden ausschließlich die Art des Ereignisses und wenige eingegrenzte Merkmale: Schulfach, Übungstyp, angestrebte Note, Anzahl der Fragen, erreichte Punktzahl in Prozent sowie Dauer- und Anzahlwerte. Beim KI-Coach kommen technische Messwerte hinzu (Geräteklasse, Antwortdauer, Speicherverbrauch, Downloadstatus).
+        </p>
+        <p>
+            <strong>Nicht übertragen werden Inhalte:</strong> keine Fotos, keine erkannten Texte, keine Aufgaben, keine Fragen oder Antworten des Coaches und keine Freitexte. Die Kennung aus 3.2 dient beim Empfang nur als Zähler-Schlüssel gegen Überlastung und wird nicht in die Auswertungsdaten geschrieben. In der Auswertung liegen daher unverknüpfte Einzelereignisse; ein Nutzungsprofil eines Geräts lässt sich daraus nicht bilden.
+        </p>
+        <ul>
+            <li><strong>Zweck:</strong> Produkt- und Qualitätsentscheidungen auf Basis anonymer Summen</li>
+            <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Verbesserung der App)</li>
+            <li><strong>Speicherdauer:</strong> 3 Monate in der Cloudflare Analytics Engine</li>
+            <li><strong>Empfänger:</strong> Cloudflare Inc. (USA)</li>
+        </ul>
+        <p>
+            <strong>Ausnahme ohne jede Kennung:</strong> Der KI-Coach erkennt Nachrichten, die auf eine seelische Notlage hindeuten, und blendet dann Hilfsangebote ein. Dass dieser Schutz ausgelöst hat, wird als reines Zählsignal gemeldet – <em>ohne</em> die Gerätekennung aus 3.2, ohne das auslösende Wort, ohne den Nachrichtentext und ohne jeden weiteren Kontext. Dieses Signal ist damit keinem Gerät zuzuordnen und auch nicht mit den übrigen Ereignissen verknüpfbar. Verbindungsbedingt ist Cloudflare beim Empfang kurzzeitig Ihre IP-Adresse sichtbar; wir speichern sie nicht und führen sie nicht mit dem Signal zusammen.
+        </p>
+
+        <h3>3.6 KI-Coach (Beta)</h3>
+        <p>
+            Der KI-Coach ist derzeit ausschließlich im geschlossenen Testkanal verfügbar und für die übrigen Nutzerinnen und Nutzer nicht sichtbar.
+        </p>
+        <p>
+            Wenn Sie ihn aktivieren, lädt die App einmalig eine Modelldatei von etwa 2,6&nbsp;GB von <strong>Hugging Face, Inc.</strong> (USA) herunter. Dabei wird – wie bei jedem Abruf einer Datei aus dem Internet – Ihre IP-Adresse an Hugging Face übermittelt. Wir übertragen dabei keine Angaben über Sie, Ihr Lernmaterial oder Ihre Nutzung.
+        </p>
+        <p>
+            <strong>Nach dem Download findet die gesamte Verarbeitung auf Ihrem Gerät statt.</strong> Ihre Fragen an den Coach, sein Antworttext und der zugrunde liegende Lernstoff verlassen Ihr Gerät nicht und erreichen weder uns noch Dritte. Übertragen werden lediglich die inhaltsfreien Zählsignale aus 3.5.
+        </p>
+        <ul>
+            <li><strong>Zweck:</strong> Bereitstellung des lokal laufenden Lern-Coaches</li>
+            <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Bereitstellung der von Ihnen aufgerufenen Funktion)</li>
+            <li><strong>Speicherdauer:</strong> Die Modelldatei bleibt auf Ihrem Gerät, bis Sie den Coach deaktivieren oder die App deinstallieren</li>
+            <li><strong>Empfänger:</strong> Hugging Face, Inc. (USA) – ausschließlich beim Download</li>
+        </ul>
+
+        <h3>3.7 Melden einer Coach-Antwort</h3>
+        <p>
+            Wenn Ihnen eine Antwort des KI-Coaches falsch oder unangemessen erscheint, können Sie sie melden. Dabei wird nichts automatisch versendet: Die App öffnet die Teilen-Funktion Ihres Geräts mit einem fertigen Text, den Sie vollständig sehen, und Sie entscheiden selbst, ob und worüber Sie ihn absenden. Der Text enthält die beanstandete Antwort und die Frage, die zu ihr geführt hat – Ihr Lernmaterial wird nicht beigefügt.
+        </p>
+        <p>
+            Senden Sie die Meldung an uns, geht sie an <a href="mailto:support@kreatixly.com">support@kreatixly.com</a>. Unabhängig davon meldet die App an unseren Worker das inhaltsfreie Zählsignal „eine Antwort wurde gemeldet“ (siehe 3.5) – ohne den gemeldeten Text.
+        </p>
+        <ul>
+            <li><strong>Zweck:</strong> Prüfung und Verbesserung der Antwortqualität und -sicherheit</li>
+            <li><strong>Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. a DSGVO (Ihre Einwilligung durch das bewusste Absenden)</li>
+            <li><strong>Speicherdauer:</strong> Löschung spätestens 90 Tage nach Abschluss der Bearbeitung</li>
+            <li><strong>Empfänger:</strong> je nach der von Ihnen gewählten Versandart der jeweilige Anbieter (z.&nbsp;B. Ihr E-Mail-Dienst)</li>
+        </ul>
+
         <h2>4. Drittanbieter und Datenübertragung in Drittländer</h2>
         <p>Folgende Drittanbieter erhalten im Rahmen der App-Nutzung Daten:</p>
 
@@ -253,9 +304,15 @@
             </tr>
             <tr>
                 <td>Cloudflare Inc.</td>
-                <td>API-Proxy, Rate Limiting</td>
+                <td>API-Proxy, Rate Limiting, anonyme Nutzungsereignisse</td>
                 <td>USA</td>
                 <td>EU-US Data Privacy Framework, Standardvertragsklauseln (SCCs)</td>
+            </tr>
+            <tr>
+                <td>Hugging Face, Inc.</td>
+                <td>Einmaliger Download der Modelldatei des KI-Coaches (nur bei Aktivierung)</td>
+                <td>USA</td>
+                <td>Standardvertragsklauseln (SCCs)</td>
             </tr>
             <tr>
                 <td>Google LLC (Play Billing)</td>
@@ -279,7 +336,15 @@
             </tr>
             <tr>
                 <td>Internetzugang</td>
-                <td>Übertragung von Bilddaten an die KI-API und Empfang der generierten Inhalte</td>
+                <td>Übertragung von Bilddaten an die KI-API, Empfang der generierten Inhalte, Download der Modelldatei des KI-Coaches, Senden der anonymen Nutzungsereignisse</td>
+            </tr>
+            <tr>
+                <td>Speicherplatz auf dem Gerät</td>
+                <td>Ablage Ihrer Lerndaten sowie – nur bei Aktivierung des KI-Coaches – der Modelldatei von etwa 2,6&nbsp;GB</td>
+            </tr>
+            <tr>
+                <td>Teilen-Funktion</td>
+                <td>Wird nur geöffnet, wenn Sie eine Coach-Antwort melden (3.7). Der Versand erfolgt ausschließlich durch Sie.</td>
             </tr>
         </table>
 
@@ -288,9 +353,12 @@
             LernSnap richtet sich an Schülerinnen und Schüler ab 13 Jahren. Die App erhebt keine personenbezogenen Daten (kein Name, keine E-Mail-Adresse, kein Konto). Wir erheben wissentlich keine Daten von Kindern unter 13 Jahren im Sinne des U.S. Children's Online Privacy Protection Act (COPPA). Falls Sie als Elternteil oder Erziehungsberechtigter glauben, dass Ihr Kind unter 13 Jahren die App genutzt hat, kontaktieren Sie uns bitte unter <a href="mailto:manuel@kreatixly.com">manuel@kreatixly.com</a>.
         </p>
 
-        <h2>7. Keine Werbung, kein Tracking</h2>
+        <h2>7. Keine Werbung, kein Tracking-Netzwerk</h2>
         <p>
-            LernSnap enthält keine Werbung, kein Analysetool, kein Tracking und kein Crash-Reporting-SDK. Es werden keine Nutzungsprofile erstellt.
+            LernSnap enthält keine Werbung, kein Werbe- oder Tracking-Netzwerk, keine Werbe-ID, kein Crash-Reporting-SDK und keinen Analyse-Baukasten eines Drittanbieters. Es werden keine Nutzungsprofile erstellt, nichts wird zu Werbezwecken ausgewertet und nichts wird an Werbetreibende oder Datenhändler weitergegeben.
+        </p>
+        <p>
+            Was es <em>gibt</em>, sind die in 3.5 beschriebenen anonymen Nutzungsereignisse: inhaltsfreie Zählsignale an unseren eigenen Cloudflare Worker, die nicht zu einem Geräteprofil zusammengeführt werden.
         </p>
 
         <h2>8. Ihre Rechte (DSGVO)</h2>
@@ -317,8 +385,17 @@
 
         <h2>10. Änderungen dieser Datenschutzerklärung</h2>
         <p>
-            Wir behalten uns vor, diese Datenschutzerklärung bei Änderungen der App oder der Rechtslage anzupassen. Die jeweils aktuelle Version ist unter <a href="https://kreatixly.com/datenschutz/lernsnap">kreatixly.com/datenschutz/lernsnap</a> abrufbar. Wesentliche Änderungen werden in der App kommuniziert.
+            Wir behalten uns vor, diese Datenschutzerklärung bei Änderungen der App oder der Rechtslage anzupassen. Die jeweils aktuelle Fassung ist unter <a href="https://kreatixly.com/datenschutz/lernsnap">kreatixly.com/datenschutz/lernsnap</a> abrufbar; Version und Stand finden Sie oben auf dieser Seite. In der App ist der Stand dieser Erklärung neben dem Datenschutz-Link im Profil sichtbar.
         </p>
+
+        <h2 id="de-historie">11. Änderungshistorie</h2>
+        <p><strong>Version 2.0 – August 2026</strong></p>
+        <ul>
+            <li>Abschnitt 3.5 neu: Die App sendet anonyme, inhaltsfreie Nutzungsereignisse an unseren Cloudflare Worker. Das war in Version 1.0 nicht beschrieben; Abschnitt 7 hat pauschal „kein Analysetool“ ausgesagt und war damit unzutreffend. Abschnitt 7 grenzt jetzt ab, was es gibt und was nicht.</li>
+            <li>Abschnitt 3.2 berichtigt: Die Gerätekennung entsteht auf Ihrem Gerät und bleibt dort bis zur Deinstallation. Version 1.0 hat sie so dargestellt, als bestünde sie nur 24 Stunden – gelöscht wird nach 24 Stunden der Zähler auf dem Server, nicht die Kennung.</li>
+            <li>Abschnitte 3.6 und 3.7 neu: KI-Coach mit einmaligem Modell-Download bei Hugging Face und lokaler Verarbeitung sowie das nutzer-initiierte Melden einer Coach-Antwort.</li>
+            <li>Abschnitt 5 ergänzt um Speicherplatz und Teilen-Funktion, Abschnitt 4 um Hugging Face, Inc.</li>
+        </ul>
 
         <a href="https://kreatixly.com/datenschutz.html" class="back-link">← Zurück zur Datenschutz-Übersicht</a>
     </div>
@@ -328,7 +405,7 @@
 <div id="en" class="section">
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p class="subtitle">LernSnap – Version 1.0 &nbsp;|&nbsp; Last updated: April 2025</p>
+        <p class="subtitle">LernSnap – Version 2.0 &nbsp;|&nbsp; Last updated: August 2026 &nbsp;|&nbsp; <a href="#en-history">What changed</a></p>
 
         <h2>1. Controller</h2>
         <p>
@@ -341,7 +418,7 @@
 
         <h2>2. Overview</h2>
         <div class="notice-box">
-            <p>LernSnap is built on the principle of <em>data minimization</em>. There is no account, no login, and no advertising. All notes, study plans, and exercises are stored exclusively on your device. Only when you photograph learning material are image data transmitted for AI processing.</p>
+            <p>LernSnap is built on the principle of <em>data minimization</em>. There is no account, no login, and no advertising. All notes, study plans, and exercises are stored exclusively on your device. The only things that leave your device are: photos of your learning material for AI processing (3.1), a random device identifier for abuse prevention (3.2), and anonymous, content-free usage events (3.5). If you enable the AI coach, the app downloads a model file once (3.6).</p>
         </div>
 
         <h2>3. Data Collected and Purposes</h2>
@@ -357,14 +434,17 @@
             <li><strong>Recipients:</strong> Google LLC (Gemini API), Cloudflare Inc. (proxy)</li>
         </ul>
 
-        <h3>3.2 Anonymous Device Identifier (Rate Limiting)</h3>
+        <h3>3.2 Device Identifier (Abuse Prevention)</h3>
         <p>
-            To prevent abuse of the AI API, the Cloudflare Worker stores an anonymous, device-specific identifier (Device-ID) together with a request counter. This identifier contains no personal data and is automatically deleted after 24 hours.
+            So that individual devices cannot overload the AI API, the app generates a random identifier (a UUID) on first use. It is stored on your device and stays there until you uninstall the app or clear its data. It is sent with every request to our Cloudflare Worker, where it serves as a counter key – both for AI requests (3.1) and for usage events (3.5).
+        </p>
+        <p>
+            The identifier is randomly generated. It contains no name, no email address, no advertising ID and no device characteristics, and by itself cannot be attributed to a person. On the server it is only ever stored as part of a daily counter that is deleted automatically after 24 hours; it does not enter our analytics data (see 3.5).
         </p>
         <ul>
             <li><strong>Purpose:</strong> Abuse prevention (rate limiting)</li>
             <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in service security and availability)</li>
-            <li><strong>Retention:</strong> 24 hours (automatic deletion)</li>
+            <li><strong>Retention:</strong> on the server, 24 hours per daily counter (automatic deletion); on your device, until uninstall or clearing of app data</li>
             <li><strong>Recipients:</strong> Cloudflare Inc. (USA)</li>
         </ul>
 
@@ -387,6 +467,54 @@
             <li><strong>Recipients:</strong> Google LLC</li>
         </ul>
 
+        <h3>3.5 Anonymous Usage Events</h3>
+        <p>
+            To understand which features are used and where the app struggles, LernSnap reports an event to our Cloudflare Worker after certain actions – for example when a scan starts, an exercise is completed, or a study plan is created. Only the type of event and a few bounded attributes are transmitted: school subject, exercise type, target grade, number of questions, score in percent, and duration or count values. For the AI coach, technical measurements are added (device class, response time, memory usage, download status).
+        </p>
+        <p>
+            <strong>No content is transmitted:</strong> no photos, no recognised text, no exercises, no questions or answers from the coach, and no free text. On receipt, the identifier from 3.2 serves only as a counter key against overload and is not written into the analytics data. The analytics store therefore holds unlinked individual events; a usage profile of a device cannot be derived from them.
+        </p>
+        <ul>
+            <li><strong>Purpose:</strong> Product and quality decisions based on anonymous totals</li>
+            <li><strong>Legal basis:</strong> Art. 6(1)(f) GDPR (legitimate interest in improving the app)</li>
+            <li><strong>Retention:</strong> 3 months in Cloudflare Analytics Engine</li>
+            <li><strong>Recipients:</strong> Cloudflare Inc. (USA)</li>
+        </ul>
+        <p>
+            <strong>Exception with no identifier at all:</strong> The AI coach detects messages suggesting emotional distress and then shows sources of help. The fact that this safeguard triggered is reported as a bare counting signal – <em>without</em> the device identifier from 3.2, without the triggering word, without the message text, and without any further context. This signal therefore cannot be attributed to a device, nor linked to any other event. As with any connection, Cloudflare briefly sees your IP address on receipt; we do not store it and do not combine it with the signal.
+        </p>
+
+        <h3>3.6 AI Coach (Beta)</h3>
+        <p>
+            The AI coach is currently available only in the closed testing track and is not visible to other users.
+        </p>
+        <p>
+            When you enable it, the app downloads a model file of approximately 2.6&nbsp;GB once from <strong>Hugging Face, Inc.</strong> (USA). As with any file retrieved from the internet, your IP address is transmitted to Hugging Face in the process. We do not transmit any information about you, your learning material, or your usage.
+        </p>
+        <p>
+            <strong>After the download, all processing happens on your device.</strong> Your questions to the coach, its answers, and the underlying learning material never leave your device and reach neither us nor any third party. Only the content-free counting signals described in 3.5 are transmitted.
+        </p>
+        <ul>
+            <li><strong>Purpose:</strong> Providing the locally running study coach</li>
+            <li><strong>Legal basis:</strong> Art. 6(1)(b) GDPR (providing the function you requested)</li>
+            <li><strong>Retention:</strong> The model file stays on your device until you disable the coach or uninstall the app</li>
+            <li><strong>Recipients:</strong> Hugging Face, Inc. (USA) – during the download only</li>
+        </ul>
+
+        <h3>3.7 Reporting a Coach Answer</h3>
+        <p>
+            If an answer from the AI coach seems wrong or inappropriate, you can report it. Nothing is sent automatically: the app opens your device's share function with a prepared text that you see in full, and you decide whether and how to send it. The text contains the answer in question and the question that prompted it – your learning material is not attached.
+        </p>
+        <p>
+            If you send the report to us, it goes to <a href="mailto:support@kreatixly.com">support@kreatixly.com</a>. Independently of this, the app reports the content-free counting signal "an answer was reported" to our Worker (see 3.5) – without the reported text.
+        </p>
+        <ul>
+            <li><strong>Purpose:</strong> Reviewing and improving answer quality and safety</li>
+            <li><strong>Legal basis:</strong> Art. 6(1)(a) GDPR (your consent by deliberately sending it)</li>
+            <li><strong>Retention:</strong> Deleted no later than 90 days after the report has been dealt with</li>
+            <li><strong>Recipients:</strong> depending on the sending method you choose, the respective provider (e.g. your email service)</li>
+        </ul>
+
         <h2>4. Third Parties and International Data Transfers</h2>
         <p>The following third parties receive data during use of the app:</p>
 
@@ -405,9 +533,15 @@
             </tr>
             <tr>
                 <td>Cloudflare Inc.</td>
-                <td>API proxy, rate limiting</td>
+                <td>API proxy, rate limiting, anonymous usage events</td>
                 <td>USA</td>
                 <td>EU-US Data Privacy Framework, Standard Contractual Clauses (SCCs)</td>
+            </tr>
+            <tr>
+                <td>Hugging Face, Inc.</td>
+                <td>One-time download of the AI coach's model file (only if enabled)</td>
+                <td>USA</td>
+                <td>Standard Contractual Clauses (SCCs)</td>
             </tr>
             <tr>
                 <td>Google LLC (Play Billing)</td>
@@ -431,7 +565,15 @@
             </tr>
             <tr>
                 <td>Internet access</td>
-                <td>Transmitting image data to the AI API and receiving generated content</td>
+                <td>Transmitting image data to the AI API, receiving generated content, downloading the AI coach's model file, sending anonymous usage events</td>
+            </tr>
+            <tr>
+                <td>Device storage</td>
+                <td>Storing your learning data and – only if the AI coach is enabled – the model file of approximately 2.6&nbsp;GB</td>
+            </tr>
+            <tr>
+                <td>Share function</td>
+                <td>Opened only when you report a coach answer (3.7). Sending is done by you alone.</td>
             </tr>
         </table>
 
@@ -440,9 +582,12 @@
             LernSnap is intended for students aged 13 and above. The app does not collect personal data (no name, no email address, no account). We do not knowingly collect personal information from children under the age of 13 as defined by the U.S. Children's Online Privacy Protection Act (COPPA). If you are a parent or guardian and believe your child under 13 has used the app, please contact us at <a href="mailto:manuel@kreatixly.com">manuel@kreatixly.com</a>.
         </p>
 
-        <h2>7. No Advertising, No Tracking</h2>
+        <h2>7. No Advertising, No Tracking Network</h2>
         <p>
-            LernSnap contains no advertisements, no analytics tools, no tracking, and no crash-reporting SDKs. No user profiles are created.
+            LernSnap contains no advertisements, no advertising or tracking network, no advertising ID, no crash-reporting SDK, and no third-party analytics toolkit. No user profiles are created, nothing is evaluated for advertising purposes, and nothing is passed on to advertisers or data brokers.
+        </p>
+        <p>
+            What does exist are the anonymous usage events described in 3.5: content-free counting signals sent to our own Cloudflare Worker, which are not combined into a device profile.
         </p>
 
         <h2>8. Your Rights (GDPR)</h2>
@@ -471,8 +616,17 @@
 
         <h2>10. Changes to This Privacy Policy</h2>
         <p>
-            We reserve the right to update this privacy policy to reflect changes to the app or applicable law. The current version is always available at <a href="https://kreatixly.com/datenschutz/lernsnap">kreatixly.com/datenschutz/lernsnap</a>. Material changes will be communicated within the app.
+            We reserve the right to update this privacy policy to reflect changes to the app or applicable law. The current version is always available at <a href="https://kreatixly.com/datenschutz/lernsnap">kreatixly.com/datenschutz/lernsnap</a>; version and date are shown at the top of this page. Inside the app, the date of this policy is shown next to the privacy link in your profile.
         </p>
+
+        <h2 id="en-history">11. Change History</h2>
+        <p><strong>Version 2.0 – August 2026</strong></p>
+        <ul>
+            <li>New section 3.5: the app sends anonymous, content-free usage events to our Cloudflare Worker. Version 1.0 did not describe this, and section 7 stated flatly that there was "no analytics tool", which was inaccurate. Section 7 now distinguishes what exists from what does not.</li>
+            <li>Section 3.2 corrected: the device identifier is created on your device and stays there until uninstall. Version 1.0 presented it as if it existed for only 24 hours – what is deleted after 24 hours is the counter on the server, not the identifier.</li>
+            <li>New sections 3.6 and 3.7: the AI coach with its one-time model download from Hugging Face and local processing, and the user-initiated reporting of a coach answer.</li>
+            <li>Section 5 extended with device storage and the share function; section 4 extended with Hugging Face, Inc.</li>
+        </ul>
 
         <a href="https://kreatixly.com/datenschutz.html" class="back-link">← Back to Privacy Overview</a>
     </div>
