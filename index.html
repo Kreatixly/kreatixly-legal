@@ -75,11 +75,27 @@ h1 { font-size:2.5rem; letter-spacing:-.02em; margin-bottom:12px; line-height:1.
   box-shadow:none; cursor:default; }
 .cta--soon:hover { transform:none; box-shadow:none; }
 
-/* Screenshot im Geraeterahmen. Hoehe folgt dem Bild, damit nichts verzerrt:
-   die Screenshots der Apps haben unterschiedliche Seitenverhaeltnisse. */
-.shot { width:200px; flex-shrink:0; border:7px solid #2a2d33; border-radius:26px;
-  background:#0f1114; box-shadow:0 24px 50px rgba(0,0,0,.55); overflow:hidden; }
-.shot img { width:100%; height:auto; display:block; }
+/* Screenshot-Karussell im Geraeterahmen. Alle Bilder sind 468x804,
+   deshalb braucht der Rahmen keine feste Hoehe. */
+.gallery { position:relative; width:200px; flex-shrink:0; }
+.shot { display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+  border:7px solid #2a2d33; border-radius:26px; background:#0f1114;
+  box-shadow:0 24px 50px rgba(0,0,0,.55); scrollbar-width:none; }
+.shot::-webkit-scrollbar { display:none; }
+.shot img { flex:0 0 100%; width:100%; height:auto; display:block; scroll-snap-align:center; }
+
+.nav { position:absolute; top:50%; margin-top:-16px; width:32px; height:32px; border-radius:50%;
+  display:grid; place-items:center; cursor:pointer; font-size:1.2rem; line-height:1;
+  color:var(--text); background:rgba(26,28,32,.85); border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(6px); transition:opacity .2s, background .2s; }
+.nav:hover { background:rgba(255,255,255,.14); }
+.nav[disabled] { opacity:.25; cursor:default; }
+.nav.prev { left:-14px; } .nav.next { right:-14px; }
+
+.dots { display:flex; gap:7px; justify-content:center; margin-top:14px; }
+.dots button { width:7px; height:7px; padding:0; border:0; border-radius:50%; cursor:pointer;
+  background:rgba(255,255,255,.25); transition:background .2s, transform .2s; }
+.dots button[aria-current="true"] { background:var(--acc); transform:scale(1.3); }
 
 /* ---------- Footer ---------- */
 footer { text-align:center; padding:56px 0 40px; border-top:1px solid var(--line); margin-top:40px; }
@@ -142,8 +158,12 @@ footer p { font-size:.8rem; color:#4b5563; }
         Im Play Store laden
       </a>
     </div>
-    <div class="shot">
-      <img src="./apps/LernSnap/screenshot_uebung.webp" width="468" height="1014" alt="LernSnap-Übung in Biologie: Multiple-Choice-Frage zur Fotosynthese mit markierter richtiger Antwort" loading="lazy">
+    <div class="gallery">
+      <div class="shot">
+        <img src="./apps/LernSnap/shot_1.webp" width="468" height="804" alt="Abfotografierte Buchseite wird in LernSnap eingelesen" loading="lazy">
+        <img src="./apps/LernSnap/shot_2.webp" width="468" height="804" alt="Generierte Übungsfrage zur Fotosynthese mit markierter richtiger Antwort" loading="lazy">
+        <img src="./apps/LernSnap/shot_3.webp" width="468" height="804" alt="Ergebnis einer Übung: 100 Prozent, 3 von 3 richtig" loading="lazy">
+      </div>
     </div>
   </section>
 
@@ -160,8 +180,12 @@ footer p { font-size:.8rem; color:#4b5563; }
       </div>
       <span class="cta cta--soon">Bald im Play Store</span>
     </div>
-    <div class="shot">
-      <img src="./apps/Outli/screenshot_camera.webp" width="468" height="832" alt="Outli AR-Ansicht: eine Schmetterlings-Vorlage liegt zum Abpausen auf dem Papier" loading="lazy">
+    <div class="gallery">
+      <div class="shot">
+        <img src="./apps/Outli/shot_1.webp" width="468" height="804" alt="Vorlagen-Auswahl in Outli, sortiert nach Motiven" loading="lazy">
+        <img src="./apps/Outli/shot_2.webp" width="468" height="804" alt="AR-Ansicht: eine Schmetterlings-Vorlage liegt zum Abpausen auf dem Papier" loading="lazy">
+        <img src="./apps/Outli/shot_3.webp" width="468" height="804" alt="Künstler-Galerie mit freigeschalteten Motiven" loading="lazy">
+      </div>
     </div>
   </section>
 
@@ -187,6 +211,46 @@ const spy = new IntersectionObserver(entries => entries.forEach(e => {
     a.setAttribute('aria-current', a.hash === '#' + e.target.id));
 }), { rootMargin: '-45% 0px -45% 0px' });
 document.querySelectorAll('.app').forEach(s => spy.observe(s));
+
+// Screenshot-Karussell: Pfeile und Punkte aus den vorhandenen Bildern aufbauen.
+document.querySelectorAll('.gallery').forEach(gallery => {
+  const shot = gallery.querySelector('.shot');
+  const count = shot.children.length;
+
+  const arrow = (dir, label, sign) => {
+    const b = document.createElement('button');
+    b.className = 'nav ' + dir;
+    b.type = 'button';
+    b.innerHTML = sign;
+    b.setAttribute('aria-label', label);
+    b.onclick = () => shot.scrollBy({ left: sign === '‹' ? -shot.clientWidth : shot.clientWidth,
+                                      behavior: 'smooth' });
+    gallery.appendChild(b);
+    return b;
+  };
+  const prev = arrow('prev', 'Vorheriger Screenshot', '‹');
+  const next = arrow('next', 'Nächster Screenshot', '›');
+
+  const dots = document.createElement('div');
+  dots.className = 'dots';
+  for (let i = 0; i < count; i++) {
+    const d = document.createElement('button');
+    d.type = 'button';
+    d.setAttribute('aria-label', `Screenshot ${i + 1} von ${count}`);
+    d.onclick = () => shot.scrollTo({ left: i * shot.clientWidth, behavior: 'smooth' });
+    dots.appendChild(d);
+  }
+  gallery.appendChild(dots);
+
+  const sync = () => {
+    const i = Math.round(shot.scrollLeft / shot.clientWidth);
+    [...dots.children].forEach((d, n) => d.setAttribute('aria-current', n === i));
+    prev.disabled = i === 0;
+    next.disabled = i === count - 1;
+  };
+  shot.addEventListener('scroll', sync, { passive: true });
+  sync();
+});
 </script>
 </body>
 </html>
