@@ -1,11 +1,14 @@
 #!/bin/sh
 # Baut die Website-Screenshots: Statusleiste + Gestenleiste weg,
 # alle Bilder auf ein gemeinsames Seitenverhaeltnis, ohne zu verzerren.
+#
+# Aufruf aus dem Repo-Wurzelverzeichnis:  sh tools/build_shots.sh
+# Braucht ffmpeg und die Quell-Repos der Apps.
 set -e
-cd "$(dirname "$0")"
-OUT=site/apps
-LS=/d/3_Kreatixly/Apps/LernSnap/demo_footage
-OU=ou
+cd "$(dirname "$0")/.."
+OUT=apps
+LS=${LERNSNAP_REPO:-/d/3_Kreatixly/Apps/LernSnap}/demo_footage
+OU=${OUTLI_REPO:-/d/2_Programmieren/Outli}/assets/screenshots/phone
 
 # Gemeinsames Ziel: 468 x 804 (Verhaeltnis 1 : 1,718) fuer jedes Bild beider Apps.
 # Kein Bild wird verzerrt und keines verliert Inhalt: LernSnap ist schmaler als
@@ -31,7 +34,7 @@ done
 # --- Outli: 1080x1920, nur oben 64 weg. Die Mockups haben unten keine
 #     Gestenleiste - dort stehen die Werkzeug-Beschriftungen. ---
 i=1
-for n in 03 02 04; do
+for n in 03_templates 02_camera 04_gallery; do
   ffmpeg -y -loglevel error -i "$OU/$n.png" \
     -vf "crop=1080:1856:0:64,scale=468:804" \
     -quality 82 "$OUT/Outli/shot_$i.webp"
