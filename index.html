@@ -75,14 +75,11 @@ h1 { font-size:2.5rem; letter-spacing:-.02em; margin-bottom:12px; line-height:1.
   box-shadow:none; cursor:default; }
 .cta--soon:hover { transform:none; box-shadow:none; }
 
-/* Screenshot im Geräterahmen / Icon-Bühne für Apps ohne Screenshot */
-.shot { width:234px; flex-shrink:0; border:8px solid #2a2d33; border-radius:30px;
-  background:#0f1114; box-shadow:0 30px 60px rgba(0,0,0,.55); overflow:hidden; }
-.shot img { width:100%; display:block; }
-.stage { width:234px; aspect-ratio:9/16; flex-shrink:0; border-radius:30px;
-  display:flex; align-items:center; justify-content:center; border:1px solid var(--line);
-  background:radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--acc) 14%,transparent),transparent 70%); }
-.stage img { width:110px; filter:drop-shadow(0 12px 30px rgba(0,0,0,.5)); }
+/* Screenshot im Geraeterahmen. Hoehe folgt dem Bild, damit nichts verzerrt:
+   die Screenshots der Apps haben unterschiedliche Seitenverhaeltnisse. */
+.shot { width:200px; flex-shrink:0; border:7px solid #2a2d33; border-radius:26px;
+  background:#0f1114; box-shadow:0 24px 50px rgba(0,0,0,.55); overflow:hidden; }
+.shot img { width:100%; height:auto; display:block; }
 
 /* ---------- Footer ---------- */
 footer { text-align:center; padding:56px 0 40px; border-top:1px solid var(--line); margin-top:40px; }
@@ -146,7 +143,7 @@ footer p { font-size:.8rem; color:#4b5563; }
       </a>
     </div>
     <div class="shot">
-      <img src="./apps/LernSnap/screenshot_home.webp" width="468" height="937" alt="LernSnap Startbildschirm mit Lernfortschritt und zuletzt gelernten Themen" loading="lazy">
+      <img src="./apps/LernSnap/screenshot_home.webp" width="468" height="938" alt="LernSnap Startbildschirm mit Lernfortschritt und zuletzt gelernten Themen" loading="lazy">
     </div>
   </section>
 
@@ -163,7 +160,9 @@ footer p { font-size:.8rem; color:#4b5563; }
       </div>
       <span class="cta cta--soon">Bald im Play Store</span>
     </div>
-    <div class="stage"><img src="./apps/Outli/app_logo.svg" alt=""></div>
+    <div class="shot">
+      <img src="./apps/Outli/screenshot_camera.webp" width="468" height="832" alt="Outli AR-Ansicht: eine Schmetterlings-Vorlage liegt zum Abpausen auf dem Papier" loading="lazy">
+    </div>
   </section>
 
 </main>
